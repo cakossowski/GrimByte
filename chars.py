@@ -41,7 +41,9 @@ class PlayerChar(Entity):
             self.inventory.append(target_item)
             print(f"You picked up: {target_item.name}")
         else:
-            print("Inventory is full!")
+            print(f"Inventory is full! {target_item.name} will be destroyed!")
+            del target_item
+
 
     def show_inventory(self):
         print(f"Your inventory currently contains the following items:")
