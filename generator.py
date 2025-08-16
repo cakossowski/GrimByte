@@ -145,3 +145,74 @@ legendary_weapons = {
     "Hand-Forged Dagger": "Sharp, elegant, slightly smug.",
     "Veteran’s Polearm": "Old, seasoned, and dangerously opinionated."
 }
+
+fodder_monsters = {
+    "Rotrat": "Half decayed, half alive, fully disgusting.",
+    "Mold Goblin": "Throws moldy bread instead of knives.",
+    "Bone Cricket": "Chirps loud enough to ruin stealth, not much else.",
+    "Slime Blob": "Jiggles menacingly, smells like wet socks.",
+    "Dust Skeleton": "Falls apart if you sneeze too hard.",
+    "Rotting Bat": "Flies in circles, forgets why halfway.",
+    "Gutter Imp": "Steals shoes, laughs way too loud about it.",
+    "Gnawed Ghoul": "Half-eaten, but still annoyingly persistent.",
+    "Crawling Hand": "Five fingers, zero manners.",
+    "Rust Beetle": "Eats armor faster than adventurers.",
+    "Torch Moth": "Suicidally in love with your torch.",
+    "Shrieking Rat": "Makes more noise than actual damage.",
+    "Corpse Worm": "Lives in corpses, visits unexpectedly.",
+    "Broken Puppet": "Wooden limbs, creaky insults.",
+    "Ash Lizard": "Falls apart into dust when slapped.",
+    "Feral Dog": "Mangy, growly, mildly bitey.",
+    "Drunk Goblin": "Trips on own weapon more than yours.",
+    "Paper Skeleton": "Rattles loudly, folds poorly.",
+    "Rotfly": "Buzzes in your ear until rage sets in.",
+    "Hungry Shade": "Barely visible, always asking for snacks."
+}
+
+boss_monsters = {
+    "Lord Carrion": "A regal corpse king who smells worse than he rules.",
+    "The Maw of Ashes": "A giant beast whose cough sets rooms on fire.",
+    "Mad Jester Varrox": "Laughs, juggles skulls, kills between punchlines.",
+    "Bone Colossus": "A walking pile of skeletons arguing who’s in charge.",
+    "The Butcher Priest": "Blesses victims with his cleaver… repeatedly.",
+    "Widow Silkskin": "A spider the size of a house with a flair for weaving corpses.",
+    "Ghoul General": "Commands rotting troops with military disappointment.",
+    "The Rust Tyrant": "A knight whose armor is more fungus than metal.",
+    "Eternal Warden": "Guards a door no one asked to open.",
+    "The Hollow King": "Wears a crown of teeth, speaks in echoes of despair."
+}
+
+death_quotes = [
+    "lets out a dramatic scream and immediately regrets the performance.",
+    "explodes into confetti… of bones.",
+    "coughs politely before collapsing into a heap.",
+    "whispers: 'tell my rats… I loved them.'",
+    "trips over its own corpse on the way down.",
+    "vanishes in a puff of dust, leaving only disappointment.",
+    "lets out a final burp that smells suspiciously like despair.",
+    "hisses one last insult before choking on it.",
+    "claps sarcastically, then dies.",
+    "melts into a puddle that spells 'oops'.",
+    "drops dramatically, as if auditioning for theater.",
+    "screams 'I’ll be back!' — it won’t.",
+    "turns into smoke that smells like old socks.",
+    "gives you the finger… literally.",
+    "lets out a fart so powerful it echoes in the void.",
+    "tries to say something important but sneezes to death instead.",
+    "collapses and whispers: 'worth it… not really.'",
+    "turns into dust bunnies that scatter quickly.",
+    "salutes you, then faceplants ungracefully.",
+    "leaves behind nothing but awkward silence."
+]
+
+
+def generate_treasure_pool():
+    pass
+
+
+def generate_weapon_pool():
+    pass
+
+
+def generate_room_pool():
+    pass
