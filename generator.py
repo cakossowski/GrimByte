@@ -253,12 +253,32 @@ def generate_treasure_pool(target_item_pool: list) -> list:
     return target_item_pool
 
 
+def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
+    if weapon_quality == "simple":
+        attack_power = random.randint(1,5)
+        value = random.randint(1,3)
+        return attack_power, value
+    elif weapon_quality == "crafted":
+        attack_power = random.randint(3, 7)
+        value = random.randint(5, 10)
+        return attack_power, value
+    elif weapon_quality == "legendary":
+        attack_power = random.randint(10, 15)
+        value = random.randint(100, 300)
+        return attack_power, value
+    else:
+        raise ValueError(f"Unknown weapon quality: {weapon_quality}")
+
+def create_weapon(weapon_list):
+    pass
 
 def generate_weapon_pool():
+    # TODO flesh out function
     pass
 
 
 def generate_room_pool():
+    # TODO flesh out function
     pass
 
 
