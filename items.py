@@ -13,3 +13,11 @@ class Item:
 
     def __repr__(self):
         return self.__str__()
+
+
+class Weapon(Item):
+    def __init__(self, name, type_, description, value, ap):
+        super().__init__(name, type_, description, value)
+
+        self.ap = ap
+
