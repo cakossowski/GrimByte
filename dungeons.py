@@ -18,3 +18,6 @@ class DungeonRoom:
                 f"TREASURES: {self.treasures} \n"
                 f"---END OF ROOM---")
 
+    def __repr__(self):
+        return self.__str__()
+

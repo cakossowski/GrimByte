@@ -12,6 +12,9 @@ class Entity:
                 f"Name: {self.name} "
                 f"Type: {self.type_} ")
 
+    def __repr__(self):
+        return self.__str__()
+
 
 class PlayerChar(Entity):
     def __init__(self, name, type_, hp, ap, defense, level):

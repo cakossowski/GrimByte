@@ -1,3 +1,6 @@
+from items import Item
+import random
+
 room_names_and_desc = {
     "Hall of Whispers": "The walls gossip about your failures… and they never forget.",
     "Cursed Pantry": "Food so rotten even the rats leave polite notes.",
@@ -206,8 +209,49 @@ death_quotes = [
 ]
 
 
-def generate_treasure_pool():
-    pass
+def calculate_item_value(type_treasure: str) -> int:
+    if type_treasure == "junk":
+        value = random.randint(1, 10)
+        return value
+    elif type_treasure == "normal":
+        value = random.randint(11, 25)
+        return value
+    elif type_treasure == "high_value":
+        value = random.randint(75, 100)
+        return value
+    else:
+        print("Unknown treasure type")
+
+
+
+def create_treasure(treasure_list: dict, type_treasure: str) -> Item:
+    value = calculate_item_value(type_treasure)
+    name, description = random.choice(list(treasure_list.items()))
+    new_item = Item(name, "item", description, value)
+    return new_item
+
+
+def generate_treasure_pool(target_item_pool: list) -> list:
+    junk_item_count = 0
+    normal_item_count = 0
+    high_value_item_count = 0
+
+    while junk_item_count < 10:
+        junk_item_count += 1
+        new_junk_treasure = create_treasure(junk_items, "junk")
+        target_item_pool.append(new_junk_treasure)
+
+    while normal_item_count < 5:
+        normal_item_count += 1
+        new_normal_treasure = create_treasure(normal_items, "normal")
+        target_item_pool.append(new_normal_treasure)
+
+    while high_value_item_count < 3:
+        high_value_item_count += 1
+        new_high_value_treasure = create_treasure(high_value_items, "high_value")
+        target_item_pool.append(new_high_value_treasure)
+    return target_item_pool
+
 
 
 def generate_weapon_pool():
@@ -216,3 +260,8 @@ def generate_weapon_pool():
 
 def generate_room_pool():
     pass
+
+
+new_item_pool = []
+generate_treasure_pool(new_item_pool)
+print(new_item_pool)
