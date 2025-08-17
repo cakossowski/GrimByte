@@ -26,6 +26,7 @@ class PlayerChar(Entity):
         self.level = level
         self.inventory = []
         self.inventory_space_max = 5
+        self.equipment = []
 
 
     def __str__(self):
@@ -33,6 +34,11 @@ class PlayerChar(Entity):
                                     f"AP: {self.ap} "
                                     f"Defense: {self.defense} "
                                     f"Level: {self.level} ")
+
+
+    def calculate_current_stats(self):
+        # TODO flesh out function
+        pass
 
 
     def check_inventory_space(self):
@@ -59,6 +65,10 @@ class PlayerChar(Entity):
         target.hp -= dmg
         print(f"{self.name} launches an attack! It deals {dmg} damage, {target.name} has {target.hp} HP remaining")
 
+
+    def trade_item(self):
+        # TODO flesh out function
+        pass
 
 
 
