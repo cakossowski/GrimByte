@@ -1,4 +1,4 @@
-from items import Item
+from items import Item, Weapon
 import random
 
 room_names_and_desc = {
@@ -269,8 +269,11 @@ def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
     else:
         raise ValueError(f"Unknown weapon quality: {weapon_quality}")
 
-def create_weapon(weapon_list):
-    pass
+def create_weapon(weapon_list, weapon_quality):
+    ap, value = calculate_weapon_ap_and_value(weapon_quality)
+    name, description = random.choice(list(weapon_list.items))
+    new_weapon = Weapon(name, "weapon", description, value, ap)
+    return new_weapon
 
 def generate_weapon_pool():
     # TODO flesh out function
