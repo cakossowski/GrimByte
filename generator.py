@@ -280,6 +280,11 @@ def generate_weapon_pool():
     pass
 
 
+def create_room():
+    # TODO add functionality
+    pass
+
+
 def generate_room_pool():
     # TODO flesh out function
     pass
