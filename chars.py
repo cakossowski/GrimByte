@@ -1,5 +1,5 @@
 def calculate_dmg(attacker, defender):
-    damage = (attacker.ap ** 2) / (attacker.ap + defender.defense)
+    damage = (attacker.battle_ap ** 2) / (attacker.battle_ap + defender.battle_defense)
     return max(1, int(damage))
 
 class Entity:
@@ -17,16 +17,20 @@ class Entity:
 
 
 class PlayerChar(Entity):
-    def __init__(self, name, type_, hp, ap, defense, level):
+    def __init__(self, name, type_, hp, base_ap, defense, level):
         super().__init__(name, type_)
 
         self.hp = hp
-        self.ap = ap
-        self.defense = defense
+        self.base_ap = base_ap
+        self.battle_ap = 0
+        self.base_defense = defense
+        self.battle_defense = 0
         self.level = level
         self.inventory = []
         self.inventory_space_max = 5
-        self.equipment = []
+        self.equipment_weapon = []
+        self.equipment_armor = []
+
 
 
     def __str__(self):
@@ -37,8 +41,9 @@ class PlayerChar(Entity):
 
 
     def calculate_current_stats(self):
-        # TODO flesh out function
-        pass
+        self.battle_ap = self.equipment_weapon[0].ap + self.base_ap
+        self.battle_defense = self.equipment_armor[0].defense + self.base_defense
+
 
 
     def check_inventory_space(self):
