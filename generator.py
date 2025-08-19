@@ -275,9 +275,25 @@ def create_weapon(weapon_list, weapon_quality):
     new_weapon = Weapon(name, "weapon", description, value, ap)
     return new_weapon
 
-def generate_weapon_pool():
-    # TODO flesh out function
-    pass
+def generate_weapon_pool(target_weapon_pool: list) -> list:
+    simple_weapons_count = 0
+    crafted_weapons_count = 0
+    legendary_weapons_count = 0
+
+    while simple_weapons_count < 5:
+        simple_weapons_count += 1
+        new_simple_weapon = create_weapon(simple_weapons, "simple")
+        target_weapon_pool.append(new_simple_weapon)
+
+    while crafted_weapons_count < 5:
+        crafted_weapons_count += 1
+        new_crafted_weapon = create_weapon(crafted_weapons, "normal")
+        target_weapon_pool.append(new_crafted_weapon)
+
+    while legendary_weapons_count < 2:
+        legendary_weapons_count += 1
+        new_legendary_weapon = create_weapon(legendary_weapons, "legendary")
+        target_weapon_pool.append(new_legendary_weapon)
 
 
 def create_room():
