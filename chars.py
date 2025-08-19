@@ -35,8 +35,8 @@ class PlayerChar(Entity):
 
     def __str__(self):
         return super().__str__() + (f"HP: {self.hp} "
-                                    f"AP: {self.ap} "
-                                    f"Defense: {self.defense} "
+                                    f"AP: {self.base_ap} "
+                                    f"Base Defense: {self.base_defense} "
                                     f"Level: {self.level} ")
 
 
@@ -75,6 +75,12 @@ class PlayerChar(Entity):
         # TODO flesh out function
         pass
 
+
+class Trader(Entity):
+    def __init__(self, name, type_, inventory):
+        super().__init__(name, type_)
+
+        self.inventory = inventory
 
 
 char_1 = PlayerChar("Horst", "Player", 100, 5, 3, 1)
