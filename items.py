@@ -21,6 +21,7 @@ class Weapon(Item):
 
         self.ap = ap
 
+
 class Armor(Item):
     def __init__(self, name, type_, description, value, defense):
         super().__init__(name, type_, description, value)
