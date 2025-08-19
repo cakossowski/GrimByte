@@ -1,6 +1,7 @@
 from items import Item, Weapon
 import random
 
+# initial dictionary for room names and description
 room_names_and_desc = {
     "Hall of Whispers": "The walls gossip about your failures… and they never forget.",
     "Cursed Pantry": "Food so rotten even the rats leave polite notes.",
@@ -56,6 +57,7 @@ room_names_and_desc = {
     "Spectral Hall": "Ghosts politely step aside… sometimes."
 }
 
+# initial dictionary for junk_item names and description
 junk_items = {
     "Rusty Teapot": "Once boiled water, now mostly memories and rust flakes.",
     "Moth-Eaten Cloak": "Guaranteed to add at least two ghostly inches to your silhouette.",
@@ -74,6 +76,7 @@ junk_items = {
     "Faded Banner": "Once heralded greatness, now mostly mildew."
 }
 
+# initial dictionary for normal_item names and description
 normal_items = {
     "Faded Map": "Shows somewhere you’ve never wanted to go… probably.",
     "Tarnished Locket": "Holds memories… mostly regret and dust.",
@@ -92,6 +95,7 @@ normal_items = {
     "Cracked Goblet": "Holds liquids… occasionally something interesting."
 }
 
+# initial dictionary for high_value_item names and description
 high_value_items = {
     "Phoenix Feather": "Warm to the touch and slightly judgmental.",
     "Elixir of Forgetfulness": "Makes you forget… minor regrets or tax debts.",
@@ -110,6 +114,7 @@ high_value_items = {
     "Bag of Trickster Dust": "Makes a mess, causes laughter, and occasionally wealth."
 }
 
+# initial dictionary for trash quality weapon names and description
 simple_weapons = {
     "Rusty Dagger": "Sharp-ish, mostly rusty, probably tetanus-certified.",
     "Cracked Sword": "Cuts slightly better than wet noodles.",
@@ -123,6 +128,7 @@ simple_weapons = {
     "Shattered Chair Leg": "Improvise, adapt, survive, or just trip."
 }
 
+# initial dictionary for crafted quality weapon names and description
 crafted_weapons = {
     "Rusty Mace": "Guaranteed to dent something, maybe your ego.",
     "Chipped Axe": "Cuts wood, maybe a toe.",
@@ -136,6 +142,7 @@ crafted_weapons = {
     "Reinforced Bat": "Extra nails, extra bruises, extra regret."
 }
 
+# initial dictionary for legendary quality weapon names and description
 legendary_weapons = {
     "Masterwork Longsword": "Shiny, balanced, slightly judgmental of amateurs.",
     "Polished Warhammer": "Blows that make statues nervous.",
@@ -149,6 +156,7 @@ legendary_weapons = {
     "Veteran’s Polearm": "Old, seasoned, and dangerously opinionated."
 }
 
+# initial dictionary for fodder monster names and description
 fodder_monsters = {
     "Rotrat": "Half decayed, half alive, fully disgusting.",
     "Mold Goblin": "Throws moldy bread instead of knives.",
@@ -172,6 +180,7 @@ fodder_monsters = {
     "Hungry Shade": "Barely visible, always asking for snacks."
 }
 
+# initial dictionary for boss monster names and description
 boss_monsters = {
     "Lord Carrion": "A regal corpse king who smells worse than he rules.",
     "The Maw of Ashes": "A giant beast whose cough sets rooms on fire.",
@@ -185,6 +194,7 @@ boss_monsters = {
     "The Hollow King": "Wears a crown of teeth, speaks in echoes of despair."
 }
 
+# initial list of potential death quotes for all mobs (no difference between fooder/boss mobs)
 death_quotes = [
     "lets out a dramatic scream and immediately regrets the performance.",
     "explodes into confetti… of bones.",
@@ -210,6 +220,13 @@ death_quotes = [
 
 
 def calculate_item_value(type_treasure: str) -> int:
+    """
+    Calculate the item value for treasures to be sold later on.
+    Function is later on used in create_treasure function
+
+    :param type_treasure: Reference to dict above to select item "quality"
+    :return: value (int) for each item stored in a variable
+    """
     if type_treasure == "junk":
         value = random.randint(1, 10)
         return value
@@ -304,6 +321,8 @@ def create_room():
 def generate_room_pool():
     # TODO flesh out function
     pass
+
+# Simple test area, everything after this line is going to vanish in future updates
 
 print("---ITEM POOL---")
 new_item_pool = []
