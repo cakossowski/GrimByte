@@ -271,7 +271,7 @@ def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
 
 def create_weapon(weapon_list, weapon_quality):
     ap, value = calculate_weapon_ap_and_value(weapon_quality)
-    name, description = random.choice(list(weapon_list.items))
+    name, description = random.choice(list(weapon_list.items()))
     new_weapon = Weapon(name, "weapon", description, value, ap)
     return new_weapon
 
@@ -287,7 +287,7 @@ def generate_weapon_pool(target_weapon_pool: list) -> list:
 
     while crafted_weapons_count < 5:
         crafted_weapons_count += 1
-        new_crafted_weapon = create_weapon(crafted_weapons, "normal")
+        new_crafted_weapon = create_weapon(crafted_weapons, "crafted")
         target_weapon_pool.append(new_crafted_weapon)
 
     while legendary_weapons_count < 2:
@@ -305,7 +305,15 @@ def generate_room_pool():
     # TODO flesh out function
     pass
 
-
+print("---ITEM POOL---")
 new_item_pool = []
 generate_treasure_pool(new_item_pool)
 print(new_item_pool)
+print(f"COUNTED ITEMS IN POOL: {len(new_item_pool)}")
+
+
+print("-WEAPON POOL---")
+new_weapon_pool = []
+generate_weapon_pool(new_weapon_pool)
+print(new_weapon_pool)
+print(f"COUNTED WEAPONS IN POOL: {len(new_weapon_pool)}")
