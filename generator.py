@@ -311,6 +311,7 @@ def generate_weapon_pool(target_weapon_pool: list) -> list:
         legendary_weapons_count += 1
         new_legendary_weapon = create_weapon(legendary_weapons, "legendary")
         target_weapon_pool.append(new_legendary_weapon)
+    return target_weapon_pool
 
 
 def create_room():
