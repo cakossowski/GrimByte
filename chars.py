@@ -47,7 +47,6 @@ class PlayerChar(Entity):
         self.battle_defense = self.equipment_armor[0].defense + self.base_defense
 
 
-
     def check_inventory_space(self):
         return len(self.inventory) < self.inventory_space_max
 
@@ -78,6 +77,11 @@ class PlayerChar(Entity):
         pass
 
 
+    def level_up(self):
+        self.base_ap += 2
+        self.base_defense += 1
+        self.hp += 4
+
 class Trader(Entity):
     def __init__(self, name, type_, inventory):
         super().__init__(name, type_)
@@ -86,11 +90,12 @@ class Trader(Entity):
 
 
 class Monster(Entity):
-    def __init__(self, name, type_, base_ap, base_defense):
+    def __init__(self, name, type_, base_ap, base_defense, base_hp):
         super().__init__(name, type_)
 
         self.base_ap = base_ap
         self.base_defense = base_defense
+        self.base_hp = base_hp
 
         self.battle_ap = 0
         self.weapon = []
