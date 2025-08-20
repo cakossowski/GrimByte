@@ -10,9 +10,9 @@ class Entity:
         self.type_ = type_
 
     def __str__(self):
-        return (f"Entity Information \n"
-                f"Name: {self.name} "
-                f"Type: {self.type_} ")
+        return (f"Entity Information: \n"
+                f"Name: {self.name} \n"
+                f"Type: {self.type_} \n")
 
     def __repr__(self):
         return self.__str__()
@@ -81,6 +81,7 @@ class PlayerChar(Entity):
         self.base_ap += 2
         self.base_defense += 1
         self.hp += 4
+        self.level += 1
 
 class Trader(Entity):
     def __init__(self, name, type_, inventory):
@@ -90,7 +91,7 @@ class Trader(Entity):
 
 
 class Monster(Entity):
-    def __init__(self, name, type_, base_ap, base_defense, base_hp):
+    def __init__(self, name, type_, base_ap, base_defense, base_hp, death_quote):
         super().__init__(name, type_)
 
         self.base_ap = base_ap
@@ -99,7 +100,14 @@ class Monster(Entity):
 
         self.battle_ap = 0
         self.weapon = []
+        self.death_quote = death_quote
 
+    def __str__(self):
+        return super().__str__() + (f"BASE AP: {self.base_ap} \n"
+                                    f"BASE DEFENSE: {self.base_defense} \n"
+                                    f"BASE HP: {self.base_hp} \n"
+                                    f"DEATH MSG: '{self.death_quote}' \n"
+                                    f"---- END OF ENTITY INFORMATION FOR THIS OBJECT --- \n")
 
     def calculate_battle_ap(self):
         self.battle_ap = self.weapon[0].ap + self.base_ap
