@@ -315,13 +315,20 @@ def generate_weapon_pool(target_weapon_pool: list) -> list:
 
 
 def create_room():
-    # TODO add functionality
+    # TODO create proper room logic
+    # name, description =
     pass
 
 
-def generate_room_pool():
+def create_chunks(room):
+    #TODO room logic still missing
+    pass
+
+def generate_room_pool(chunk_1, chunk_2, chunk_3):
     # TODO flesh out function
     pass
+
+
 
 # Simple test area, everything after this line is going to vanish in future updates
 
@@ -332,7 +339,7 @@ print(new_item_pool)
 print(f"COUNTED ITEMS IN POOL: {len(new_item_pool)}")
 
 
-print("-WEAPON POOL---")
+print("---WEAPON POOL---")
 new_weapon_pool = []
 generate_weapon_pool(new_weapon_pool)
 print(new_weapon_pool)
