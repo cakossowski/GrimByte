@@ -1,4 +1,6 @@
+import chars
 from items import Item, Weapon
+from chars import Monster
 import random
 
 # initial dictionary for room names and description
@@ -328,6 +330,35 @@ def generate_room_pool(chunk_1, chunk_2, chunk_3):
     # TODO flesh out function
     pass
 
+def create_fodder_monster():
+    name, description = random.choice(list(fodder_monsters.items()))
+    base_ap, base_defense, base_hp = chars.calculate_base_stats_monsters()
+    new_death_msg = random.choice(death_quotes)
+    new_monster = chars.Monster(name, "monster", base_ap, base_defense, base_hp, new_death_msg)
+    return new_monster
+
+def create_boss_monster():
+    name, description = random.choice(list(boss_monsters.items()))
+    base_ap, base_defense, base_hp = chars.calculate_base_stats_bosses()
+    new_death_msg = random.choice(death_quotes)
+    new_boss = chars.Monster(name, "boss", base_ap, base_defense, base_hp, new_death_msg)
+    return new_boss
+
+def generate_encounter_pool(target_pool: list) -> list:
+    fodder_count = 0
+    boss_count = 0
+
+    while fodder_count < 8:
+        fodder_count += 1
+        new_fodder_monster = create_fodder_monster()
+        target_pool.append(new_fodder_monster)
+
+    while boss_count < 2:
+        boss_count += 1
+        new_boss = create_boss_monster()
+        target_pool.append(new_boss)
+
+    return target_pool
 
 
 # Simple test area, everything after this line is going to vanish in future updates
@@ -344,3 +375,9 @@ new_weapon_pool = []
 generate_weapon_pool(new_weapon_pool)
 print(new_weapon_pool)
 print(f"COUNTED WEAPONS IN POOL: {len(new_weapon_pool)}")
+
+print("---MONSTER POOL---")
+new_encounter_pool = []
+generate_encounter_pool(new_encounter_pool)
+print(new_encounter_pool)
+print(f"COUNTED MONSTERS/ENCOUNTERS IN POOL: {len(new_encounter_pool)}")
