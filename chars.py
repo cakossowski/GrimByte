@@ -83,6 +83,23 @@ class Trader(Entity):
         self.inventory = inventory
 
 
+class Monster(Entity):
+    def __init__(self, name, type_, base_ap, base_defense):
+        super().__init__(name, type_)
+
+        self.base_ap = base_ap
+        self.base_defense = base_defense
+
+        self.battle_ap = 0
+        self.weapon = []
+
+
+    def calculate_battle_ap(self):
+        self.battle_ap = self.weapon[0].ap + self.base_ap
+
+
+
+
 char_1 = PlayerChar("Horst", "Player", 100, 5, 3, 1)
 print(char_1)
 
