@@ -1,3 +1,5 @@
+import random
+
 def calculate_dmg(attacker, defender):
     damage = (attacker.battle_ap ** 2) / (attacker.battle_ap + defender.battle_defense)
     return max(1, int(damage))
@@ -98,12 +100,14 @@ class Monster(Entity):
         self.battle_ap = self.weapon[0].ap + self.base_ap
 
 
+def calculate_base_stats_monsters():
+    base_ap = random.randint(3, 5)
+    base_defense = random.randint(3, 6)
+    base_hp = random.randint(8, 12)
+    return base_ap, base_defense, base_hp
 
-
-char_1 = PlayerChar("Horst", "Player", 100, 5, 3, 1)
-print(char_1)
-
-char_2 = PlayerChar("Joachim", "Player", 100, 5, 3, 1)
-print(char_2)
-
-char_1.attack_target(char_2)
+def calculate_base_stats_bosses():
+    base_ap = random.randint(7, 9)
+    base_defense = random.randint(8, 10)
+    base_hp = random.randint(40, 55)
+    return base_ap, base_defense, base_hp
