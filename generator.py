@@ -1,6 +1,7 @@
 import chars
+import dungeons
+from dungeons import DungeonRoom
 from items import Item, Weapon
-from chars import Monster
 import random
 
 # initial dictionary for room names and description
@@ -288,7 +289,7 @@ def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
     else:
         raise ValueError(f"Unknown weapon quality: {weapon_quality}")
 
-def create_weapon(weapon_list, weapon_quality):
+def create_weapon(weapon_list: dict, weapon_quality: str) -> Weapon:
     ap, value = calculate_weapon_ap_and_value(weapon_quality)
     name, description = random.choice(list(weapon_list.items()))
     new_weapon = Weapon(name, "weapon", description, value, ap)
@@ -316,15 +317,25 @@ def generate_weapon_pool(target_weapon_pool: list) -> list:
     return target_weapon_pool
 
 
-def create_room():
-    # TODO create proper room logic
-    # name, description =
-    pass
+def create_room(room_type: str) -> DungeonRoom:
+    name, description = random.choice(list(room_names_and_desc.items()))
+    new_room = dungeons.DungeonRoom(name, room_type, description)
+    return new_room
 
+
+def assign_fodder_monsters_to_room(monster_pool: list[chars.Monster], encounter_pool: list[dungeons.DungeonRoom]):
+    fodder_count = 0
+    while fodder_count < 6:
+        selected_monster = random.choice(monster_pool)
+        random_room: DungeonRoom = random.choice(encounter_pool)
+        if not random_room.entities:
+            random_room.entities.append(selected_monster)
+            fodder_count += 1
 
 def create_chunks(room):
     #TODO room logic still missing
     pass
+
 
 def generate_room_pool(chunk_1, chunk_2, chunk_3):
     # TODO flesh out function
