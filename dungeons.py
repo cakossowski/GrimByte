@@ -1,10 +1,10 @@
 class DungeonRoom:
-    def __init__(self, name, type_, description, blocked):
+    def __init__(self, name, type_, description):
         self.name = name
         self.type_ = type_
-        self.monsters = []
+        self.entities = []
         self.description = description
-        self.blocked = blocked
+        self.blocked = False
         self.treasures = []
 
 
@@ -14,7 +14,7 @@ class DungeonRoom:
                 f"TYPE: {self.type_} \n"
                 f"DESCRIPTION: {self.description} \n"
                 f"BLOCKED: {self.blocked}\n"
-                f"MONSTERS {self.monsters} \n"
+                f"MONSTERS {self.entities} \n"
                 f"TREASURES: {self.treasures} \n"
                 f"---END OF ROOM---")
 
