@@ -84,10 +84,11 @@ class PlayerChar(Entity):
         self.level += 1
 
 class Trader(Entity):
-    def __init__(self, name, type_, inventory):
+    def __init__(self, name, type_, description):
         super().__init__(name, type_)
 
-        self.inventory = inventory
+        self.description = description
+        self.inventory = []
 
 
 class Monster(Entity):

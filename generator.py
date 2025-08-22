@@ -221,6 +221,19 @@ death_quotes = [
     "leaves behind nothing but awkward silence."
 ]
 
+merchants = {
+    "Gregor the Generous": "Sells you back the loot he stole from your corpse last run.",
+    "Old Man Ash": "Offers potions that heal, or explode. He won’t say which.",
+    "Madame Chains": "Her discounts are great—if you survive the fine print.",
+    "Toothless Varric": "Chews on his wares before selling them. Claims it adds flavor.",
+    "Sister Mercy": "Blessed your sword… now it screams at night.",
+    "Rotgut Rick": "Specializes in food that kills hunger and sometimes the eater.",
+    "Phantom Pete": "Takes your gold. Nobody remembers ever getting an item.",
+    "The Twins": "Two heads, one purse. Always arguing about the price.",
+    "Hollow Jack": "Sells lanterns. All cursed. All still somehow sold out.",
+    "Lady Spite": "Her smiles cost extra. Her insults are free."
+}
+
 
 def calculate_item_value(type_treasure: str) -> int:
     """
@@ -341,6 +354,13 @@ def generate_room_pool(chunk_1, chunk_2, chunk_3):
     # TODO flesh out function
     pass
 
+
+def create_merchant():
+    name, description = random.choice(list(merchants.items()))
+    new_merchant = chars.Trader(name, "merchant", description)
+    return new_merchant
+
+
 def create_fodder_monster():
     name, description = random.choice(list(fodder_monsters.items()))
     base_ap, base_defense, base_hp = chars.calculate_base_stats_monsters()
@@ -369,6 +389,8 @@ def generate_encounter_pool(target_pool: list) -> list:
         new_boss = create_boss_monster()
         target_pool.append(new_boss)
 
+    new_merchant = create_merchant()
+    target_pool.append(new_merchant)
     return target_pool
 
 
