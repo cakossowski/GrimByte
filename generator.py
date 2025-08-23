@@ -446,6 +446,20 @@ def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
 
     return target_map
 
+def render_map(target_map):
+    symbols = {
+        "sphere": "🔵",
+        "encounter": "☠️",
+        "void": "⬛"
+    }
+    for chunk in target_map:
+        line = []
+        for room in chunk:
+            if hasattr(room, "type_"):
+                line.append(symbols.get(room.type_))
+        print(" ".join(line))
+
+
 # Simple test area, everything after this line is going to vanish in future updates
 
 print("---ITEM POOL---")
