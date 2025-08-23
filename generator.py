@@ -427,6 +427,14 @@ def generate_first_chunk(source_dungeon_pool, extension_x) -> list:
 
     return first_chunk
 
+def generate_other_chunks(source_dungeon_pool, extension_x):
+    new_chunk = []
+    for _ in range(extension_x):
+        selected_room = random.choice(source_dungeon_pool)
+        new_chunk.append(selected_room)
+        source_dungeon_pool.remove(selected_room)
+    return new_chunk
+
 
 # Simple test area, everything after this line is going to vanish in future updates
 
