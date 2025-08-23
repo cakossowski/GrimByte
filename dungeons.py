@@ -14,7 +14,7 @@ class DungeonRoom:
                 f"TYPE: {self.type_} \n"
                 f"DESCRIPTION: {self.description} \n"
                 f"BLOCKED: {self.blocked}\n"
-                f"MONSTERS {self.entities} \n"
+                f"ENTITIES: {self.entities} \n"
                 f"TREASURES: {self.treasures} \n"
                 f"---END OF ROOM---")
 

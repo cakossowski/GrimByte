@@ -335,38 +335,31 @@ def create_room(room_type: str) -> DungeonRoom:
     new_room = dungeons.DungeonRoom(name, room_type, description)
     return new_room
 
-def create_dungeon_pool(target_pool: list):
+def generate_dungeon_pool(target_pool: list):
     void_room_count = 0
     sphere_room_count = 0
     encounter_room_count = 0
 
     while void_room_count < 2:
+        void_room_count += 1
         new_room = create_room("void")
         target_pool.append(new_room)
 
     while sphere_room_count < 2:
+        sphere_room_count += 1
         new_room = create_room("sphere")
         target_pool.append(new_room)
 
     while encounter_room_count < 11:
+        encounter_room_count += 1
         new_room = create_room("encounter")
         target_pool.append(new_room)
 
     return target_pool
 
 
-def assign_fodder_monsters_to_room(monster_pool: list[chars.Monster], encounter_pool: list[dungeons.DungeonRoom]):
-    fodder_count = 0
-    while fodder_count < 6:
-        selected_monster = random.choice(monster_pool)
-        random_room: DungeonRoom = random.choice(encounter_pool)
-        if not random_room.entities:
-            random_room.entities.append(selected_monster)
-            fodder_count += 1
-
-
 def assign_encounters_to_rooms(encounter_pool: list[chars.Monster], room_pool: list[dungeons.DungeonRoom]):
-    valid_rooms = [room for room in room_pool if room.type_ not in ("void", "sphere")]
+    valid_rooms = [room for room in room_pool if room.type_ == "encounter"]
 
     for encounter in encounter_pool:
         available_rooms = [room for room in valid_rooms if not room.entities]
@@ -439,3 +432,10 @@ new_encounter_pool = []
 generate_encounter_pool(new_encounter_pool)
 print(new_encounter_pool)
 print(f"COUNTED MONSTERS/ENCOUNTERS IN POOL: {len(new_encounter_pool)}")
+
+
+print("---NEW ROOM POOL---")
+new_dungeon_pool = []
+generate_dungeon_pool(new_dungeon_pool)
+assign_encounters_to_rooms(new_encounter_pool, new_dungeon_pool)
+print(new_dungeon_pool)
