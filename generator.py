@@ -412,6 +412,22 @@ def generate_encounter_pool(target_pool: list) -> list:
     return target_pool
 
 
+def generate_first_chunk(source_dungeon_pool, extension_x) -> list:
+    first_chunk = []
+    possible_first_room = [room for room in source_dungeon_pool if room.type_ == "sphere"]
+
+    selected_first_room = random.choice(possible_first_room)
+    first_chunk.append(selected_first_room)
+    source_dungeon_pool.remove(selected_first_room)
+
+    for _ in range(extension_x - 1):
+        selected_other_room = random.choice(source_dungeon_pool)
+        first_chunk.append(selected_other_room)
+        source_dungeon_pool.remove(selected_other_room)
+
+    return first_chunk
+
+
 # Simple test area, everything after this line is going to vanish in future updates
 
 print("---ITEM POOL---")

@@ -16,7 +16,7 @@ class DungeonRoom:
                 f"BLOCKED: {self.blocked}\n"
                 f"ENTITIES: {self.entities} \n"
                 f"TREASURES: {self.treasures} \n"
-                f"---END OF ROOM---")
+                f"---END OF ROOM--- \n")
 
     def __repr__(self):
         return self.__str__()
