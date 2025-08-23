@@ -340,7 +340,7 @@ def create_dungeon_pool(target_pool: list):
     sphere_room_count = 0
     encounter_room_count = 0
 
-    while void_room_count < 3:
+    while void_room_count < 2:
         new_room = create_room("void")
         target_pool.append(new_room)
 
@@ -348,7 +348,7 @@ def create_dungeon_pool(target_pool: list):
         new_room = create_room("sphere")
         target_pool.append(new_room)
 
-    while encounter_room_count < 12:
+    while encounter_room_count < 11:
         new_room = create_room("encounter")
         target_pool.append(new_room)
 
@@ -366,7 +366,19 @@ def assign_fodder_monsters_to_room(monster_pool: list[chars.Monster], encounter_
 
 
 def assign_encounters_to_rooms(encounter_pool: list[chars.Monster], room_pool: list[dungeons.DungeonRoom]):
-    pass
+    valid_rooms = [room for room in room_pool if room.type_ not in ("void", "sphere")]
+
+    for encounter in encounter_pool:
+        available_rooms = [room for room in valid_rooms if not room.entities]
+
+        if not available_rooms:
+            break
+
+        selected_room = random.choice(available_rooms)
+        selected_room.entities.append(encounter)
+
+    return room_pool
+
 
 def create_merchant():
     name, description = random.choice(list(merchants.items()))
