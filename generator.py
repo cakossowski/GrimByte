@@ -436,6 +436,16 @@ def generate_other_chunks(source_dungeon_pool, extension_x):
     return new_chunk
 
 
+def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
+    first_chunk = generate_first_chunk(source_dungeon_pool, extension_x)
+    target_map.append(first_chunk)
+
+    for _ in range(extension_y-1):
+        new_chunk = generate_other_chunks(source_dungeon_pool, extension_x)
+        target_map.append(new_chunk)
+
+    return target_map
+
 # Simple test area, everything after this line is going to vanish in future updates
 
 print("---ITEM POOL---")
@@ -463,3 +473,11 @@ new_dungeon_pool = []
 generate_dungeon_pool(new_dungeon_pool)
 assign_encounters_to_rooms(new_encounter_pool, new_dungeon_pool)
 print(new_dungeon_pool)
+
+print("--------------------------------------------------------------------------------")
+print("------------------------ NEW MAP GENERATION IS IMMANENT ------------------------")
+new_map = []
+print("Empty Map exists")
+generate_map(new_map, new_dungeon_pool, 5, 3)
+print(new_map)
+render_map(new_map)
