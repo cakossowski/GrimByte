@@ -1,4 +1,5 @@
 import random
+from items import Item
 
 def calculate_dmg(attacker, defender):
     damage = (attacker.battle_ap ** 2) / (attacker.battle_ap + defender.battle_defense)
@@ -32,6 +33,7 @@ class PlayerChar(Entity):
         self.inventory_space_max = 5
         self.equipment_weapon = []
         self.equipment_armor = []
+        self.gold = 0
 
 
 
@@ -125,3 +127,16 @@ def calculate_base_stats_bosses():
     base_defense = random.randint(8, 10)
     base_hp = random.randint(40, 55)
     return base_ap, base_defense, base_hp
+
+
+def sell_item(player: PlayerChar, merchant: Trader, item_name: str):
+    traded_item = next((item for item in player.inventory if item.name == item_name), None)
+    if traded_item is None:
+        print("You don't possess this ominous item!")
+        return
+
+    merchant.inventory.append(traded_item)
+    player.gold += traded_item.value
+    player.inventory.remove(traded_item)
+    print(f"You sold {traded_item.name} for {traded_item.value} Gold.")
+    print(f"{merchant.name}: Thank you, Traveller!")
