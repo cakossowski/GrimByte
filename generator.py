@@ -258,6 +258,15 @@ def calculate_item_value(type_treasure: str) -> int:
 
 
 def create_treasure(treasure_list: dict, type_treasure: str) -> Item:
+    """Create a treasure item based on a given treasure type and list.
+
+    :param treasure_list: Dictionary mapping item names to their descriptions.
+    :type treasure_list: dict
+    :param type_treasure: The type of treasure to generate, used for value calculation.
+    :type type_treasure: str
+    :returns: A newly created Item object with name, description, type, and calculated value.
+    :rtype: Item
+    """
     value = calculate_item_value(type_treasure)
     name, description = random.choice(list(treasure_list.items()))
     new_item = Item(name, "item", description, value)
@@ -265,6 +274,13 @@ def create_treasure(treasure_list: dict, type_treasure: str) -> Item:
 
 
 def generate_treasure_pool(target_item_pool: list) -> list:
+    """Generate a pool of treasure items, including junk, normal, and high-value items.
+
+    :param target_item_pool: List to which generated treasure items will be appended.
+    :type target_item_pool: list
+    :returns: The updated list containing all generated treasure items.
+    :rtype: list
+    """
     junk_item_count = 0
     normal_item_count = 0
     high_value_item_count = 0
@@ -287,6 +303,13 @@ def generate_treasure_pool(target_item_pool: list) -> list:
 
 
 def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
+    """Calculate the attack power and value of a weapon based on its quality.
+
+    :param weapon_quality: The quality tier of the weapon (e.g., "simple", "crafted", "legendary").
+    :type weapon_quality: str
+    :returns: A tuple containing the weapon's attack power and its value.
+    :rtype: tuple[int, int]
+    """
     if weapon_quality == "simple":
         attack_power = random.randint(1,5)
         value = random.randint(1,3)
