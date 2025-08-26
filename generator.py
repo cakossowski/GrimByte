@@ -326,12 +326,34 @@ def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
         raise ValueError(f"Unknown weapon quality: {weapon_quality}")
 
 def create_weapon(weapon_list: dict, weapon_quality: str) -> Weapon:
+    """
+    Create a new weapon instance with randomized attributes.
+
+    :param weapon_list: Dictionary of available weapons, where keys are
+        weapon names and values are their descriptions.
+    :type weapon_list: dict
+    :param weapon_quality: The quality of the weapon (e.g., "common", "rare",
+        "legendary"), which influences the weapon's attack power and value.
+    :type weapon_quality: str
+    :return: A new Weapon object with name, type "weapon", description,
+        value, and attack power.
+    :rtype: Weapon
+    """
     ap, value = calculate_weapon_ap_and_value(weapon_quality)
     name, description = random.choice(list(weapon_list.items()))
     new_weapon = Weapon(name, "weapon", description, value, ap)
     return new_weapon
 
 def generate_weapon_pool(target_weapon_pool: list) -> list:
+    """
+    Populate the target weapon pool with a predefined number of weapons
+    of different qualities.
+
+    :param target_weapon_pool: The list to which the generated weapons will be added.
+    :type target_weapon_pool: list
+    :return: The updated weapon pool containing simple, crafted, and legendary weapons.
+    :rtype: list
+    """
     simple_weapons_count = 0
     crafted_weapons_count = 0
     legendary_weapons_count = 0
@@ -354,6 +376,14 @@ def generate_weapon_pool(target_weapon_pool: list) -> list:
 
 
 def create_room(room_type: str) -> DungeonRoom:
+    """
+    Create a new dungeon room with a randomized name and description.
+
+    :param room_type: The type/category of the room (e.g., "treasure", "enemy", "puzzle").
+    :type room_type: str
+    :return: A new DungeonRoom object with name, type, and description.
+    :rtype: DungeonRoom
+    """
     name, description = random.choice(list(room_names_and_desc.items()))
     new_room = dungeons.DungeonRoom(name, room_type, description)
     return new_room
