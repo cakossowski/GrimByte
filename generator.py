@@ -389,6 +389,15 @@ def create_room(room_type: str) -> DungeonRoom:
     return new_room
 
 def generate_dungeon_pool(target_pool: list):
+    """
+    Populate the target dungeon pool with a predefined number of rooms
+    of different types.
+
+    :param target_pool: The list to which the generated dungeon rooms will be added.
+    :type target_pool: list
+    :return: The updated dungeon pool containing void, sphere, and encounter rooms.
+    :rtype: list
+    """
     void_room_count = 0
     sphere_room_count = 0
     encounter_room_count = 0
@@ -412,6 +421,17 @@ def generate_dungeon_pool(target_pool: list):
 
 
 def assign_encounters_to_rooms(encounter_pool: list[chars.Monster], room_pool: list[dungeons.DungeonRoom]):
+    """
+    Assign encounters from the encounter pool to available "encounter" rooms
+    in the room pool.
+
+    :param encounter_pool: List of Monster objects to be placed in rooms.
+    :type encounter_pool: list[chars.Monster]
+    :param room_pool: List of DungeonRoom objects where encounters can be assigned.
+    :type room_pool: list[dungeons.DungeonRoom]
+    :return: The updated room pool with encounters assigned to valid rooms.
+    :rtype: list[dungeons.DungeonRoom]
+    """
     valid_rooms = [room for room in room_pool if room.type_ == "encounter"]
 
     for encounter in encounter_pool:
@@ -427,12 +447,25 @@ def assign_encounters_to_rooms(encounter_pool: list[chars.Monster], room_pool: l
 
 
 def create_merchant():
+    """
+    Create a new merchant (trader) with a randomized name and description.
+
+    :return: A new Trader object representing the merchant.
+    :rtype: chars.Trader
+    """
     name, description = random.choice(list(merchants.items()))
     new_merchant = chars.Trader(name, "merchant", description)
     return new_merchant
 
 
 def create_fodder_monster():
+    """
+    Create a new fodder monster with randomized name, description, base stats,
+    and a death message.
+
+    :return: A new Monster object representing the fodder monster.
+    :rtype: chars.Monster
+    """
     name, description = random.choice(list(fodder_monsters.items()))
     base_ap, base_defense, base_hp = chars.calculate_base_stats_monsters()
     new_death_msg = random.choice(death_quotes)
