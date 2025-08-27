@@ -473,6 +473,13 @@ def create_fodder_monster():
     return new_monster
 
 def create_boss_monster():
+    """
+    Create a new boss monster with randomized name, description, base stats,
+    and a death message.
+
+    :return: A new Monster object representing the boss monster.
+    :rtype: chars.Monster
+    """
     name, description = random.choice(list(boss_monsters.items()))
     base_ap, base_defense, base_hp = chars.calculate_base_stats_bosses()
     new_death_msg = random.choice(death_quotes)
@@ -480,6 +487,16 @@ def create_boss_monster():
     return new_boss
 
 def generate_encounter_pool(target_pool: list) -> list:
+    """
+    Populate the target encounter pool with fodder monsters, boss monsters,
+    and a merchant.
+
+    :param target_pool: The list to which the generated encounters will be added.
+    :type target_pool: list
+    :return: The updated encounter pool containing fodder monsters, boss monsters,
+        and one merchant.
+    :rtype: list
+    """
     fodder_count = 0
     boss_count = 0
 
