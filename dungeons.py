@@ -6,7 +6,7 @@ class DungeonRoom:
         self.description = description
         self.blocked = False
         self.treasures = []
-
+        self.position = ()
 
     def __str__(self):
         return (f"---Dungeon Room---"

@@ -549,6 +549,16 @@ def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
 
     return target_map
 
+
+def set_coords(target_map: list):
+    for level in target_map:
+        current_level = target_map.index(level)
+        for room in level:
+            x = current_level
+            y = level.index(room)
+            room.position = (x, y)
+
+
 def render_map(target_map):
     symbols = {
         "sphere": "🔵",
@@ -598,3 +608,9 @@ print("Empty Map exists")
 generate_map(new_map, new_dungeon_pool, 5, 3)
 print(new_map)
 render_map(new_map)
+print("NOW SETTING COORDS FOR ROOMS")
+set_coords(new_map)
+
+for level in new_map:
+    for room in level:
+        print(f" ROOM NAME: {room.name} \n POSITION: {room.position}")
