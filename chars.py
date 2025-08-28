@@ -34,6 +34,7 @@ class PlayerChar(Entity):
         self.equipment_weapon = []
         self.equipment_armor = []
         self.gold = 0
+        self.position = (0, 0)
 
 
 
