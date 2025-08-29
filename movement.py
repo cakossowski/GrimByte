@@ -30,13 +30,20 @@ def check_target_destination(player, target_direction, current_map):
         print("This is not a valid direction - you can only move north, south, west and east!")
         return
 
-    x, y = new_position
+    new_x, new_y = new_position
+    print(new_position)
+    if new_x < 0 or new_y < 0:
+        print("Your way is blocked - can't move here!")
+
     try:
         target_room = current_map[y][x]
         if not target_room.blocked:
             print(f"You move {target_direction} and enter the next room!")
-            return True
+            return new_position
     except IndexError:
         print("Your way is blocked, can't move here!")
         return False
 
+
+def move_player_to_target_destination(player, target_position, current_map):
+    pass
