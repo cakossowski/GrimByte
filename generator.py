@@ -405,6 +405,7 @@ def generate_dungeon_pool(target_pool: list):
     while void_room_count < 2:
         void_room_count += 1
         new_room = create_room("void")
+        new_room.blocked = True
         target_pool.append(new_room)
 
     while sphere_room_count < 2:
