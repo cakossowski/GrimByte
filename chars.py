@@ -86,9 +86,6 @@ class PlayerChar(Entity):
         self.hp += 4
         self.level += 1
 
-    def get_current_position(self):
-        current_x, current_y = self.position
-        return current_x, current_y
 
 class Trader(Entity):
     def __init__(self, name, type_, description):
