@@ -69,7 +69,7 @@ class PlayerChar(Entity):
             print(item)
 
 
-    def attack_target(self, target):
+    def attack_monster(self, target):
         dmg = calculate_dmg(self, target)
         target.hp -= dmg
         print(f"{self.name} launches an attack! It deals {dmg} damage, {target.name} has {target.hp} HP remaining")
@@ -85,6 +85,10 @@ class PlayerChar(Entity):
         self.base_defense += 1
         self.hp += 4
         self.level += 1
+
+    def get_current_position(self):
+        current_x, current_y = self.position
+        return current_x, current_y
 
 class Trader(Entity):
     def __init__(self, name, type_, description):
@@ -115,6 +119,12 @@ class Monster(Entity):
 
     def calculate_battle_ap(self):
         self.battle_ap = self.weapon[0].ap + self.base_ap
+
+
+    def attack_player(self, player: PlayerChar):
+        dmg = calculate_dmg(self, player)
+        player.hp -= dmg
+        print(f"{self.name} launched an attack on you - it did {dmg} damage. You have {player.hp} HP left!")
 
 
 def calculate_base_stats_monsters():
