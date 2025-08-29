@@ -1,7 +1,6 @@
 import chars
 import dungeons
 
-# TODO Review if function is necessary at current state
 def get_current_position(player):
     current_x, current_y = player.position
     return current_x, current_y
@@ -32,7 +31,7 @@ def check_target_destination(player, target_direction, current_map):
 
     new_x, new_y = new_position
     print(new_position)
-    if new_x < 0 or new_y < 0:
+    if new_x < 0 or new_y < 0 or new_y > len(current_map):
         print("Your way is blocked - can't move here!")
         return False
 
