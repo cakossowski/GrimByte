@@ -34,9 +34,10 @@ def check_target_destination(player, target_direction, current_map):
     print(new_position)
     if new_x < 0 or new_y < 0:
         print("Your way is blocked - can't move here!")
+        return False
 
     try:
-        target_room = current_map[y][x]
+        target_room = current_map[new_y][new_x]
         if not target_room.blocked:
             print(f"You move {target_direction} and enter the next room!")
             return new_position
@@ -46,4 +47,14 @@ def check_target_destination(player, target_direction, current_map):
 
 
 def move_player_to_target_destination(player, target_position, current_map):
-    pass
+    # get current position of player
+    current_x, current_y = get_current_position(player)
+    # select current room object based on coords of player
+    current_room = current_map[current_y][current_x]
+    # remove player from selected room
+    current_room.entities.remove(player)
+    # set new x, y values on basis of target direction, select specific room and append player to it
+    new_x, new_y = target_position
+    target_room = current_map[new_y][new_x]
+    target_room.entities.append(player)
+    player.position = target_position
