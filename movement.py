@@ -71,6 +71,19 @@ def check_target_destination(player, target_direction, current_map):
 
 
 def move_player_to_target_destination(player, target_position, current_map):
+    """
+    Move the player to the target destination on the current map by updating
+    their position and transferring them between rooms.
+
+    :param player: The player object to be moved.
+    :type player: object
+    :param target_position: The new (x, y) position the player should move to.
+    :type target_position: tuple[int, int]
+    :param current_map: The dungeon map represented as a 2D list of rooms.
+    :type current_map: list[list[dungeons.DungeonRoom]]
+    :return: None
+    :rtype: None
+    """
     # get current position of player
     current_x, current_y = get_current_position(player)
     # select current room object based on coords of player
