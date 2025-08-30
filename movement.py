@@ -2,11 +2,33 @@ import chars
 import dungeons
 
 def get_current_position(player):
+    """
+    Get the current position of the player.
+
+    :param player: The player object containing a position attribute.
+    :type player: object
+    :return: The current (x, y) position of the player.
+    :rtype: tuple[int, int]
+    """
     current_x, current_y = player.position
     return current_x, current_y
 
 
 def check_target_destination(player, target_direction, current_map):
+    """
+    Check if the player can move to the target destination on the current map
+    and return the new position if valid.
+
+    :param player: The player object containing the current position.
+    :type player: object
+    :param target_direction: The direction the player wants to move
+        ("north", "south", "west", or "east").
+    :type target_direction: str
+    :param current_map: The dungeon map represented as a 2D list of rooms.
+    :type current_map: list[list[dungeons.DungeonRoom]]
+    :return: The new (x, y) position if movement is valid, otherwise False.
+    :rtype: tuple[int, int] | bool
+    """
     x, y = player.position
 
     if target_direction == "north":
