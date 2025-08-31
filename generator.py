@@ -517,6 +517,17 @@ def generate_encounter_pool(target_pool: list) -> list:
 
 
 def generate_first_chunk(source_dungeon_pool, extension_x) -> list:
+    """
+    Generate the first chunk of the dungeon by selecting one "sphere" room
+    and additional random rooms from the dungeon pool.
+
+    :param source_dungeon_pool: The list of available dungeon rooms to draw from.
+    :type source_dungeon_pool: list[dungeons.DungeonRoom]
+    :param extension_x: The number of rooms to include in the first chunk.
+    :type extension_x: int
+    :return: A list of selected dungeon rooms forming the first chunk.
+    :rtype: list[dungeons.DungeonRoom]
+    """
     first_chunk = []
     possible_first_room = [room for room in source_dungeon_pool if room.type_ == "sphere"]
 
@@ -532,6 +543,16 @@ def generate_first_chunk(source_dungeon_pool, extension_x) -> list:
     return first_chunk
 
 def generate_other_chunks(source_dungeon_pool, extension_x):
+    """
+    Generate a new dungeon chunk by selecting random rooms from the dungeon pool.
+
+    :param source_dungeon_pool: The list of available dungeon rooms to draw from.
+    :type source_dungeon_pool: list[dungeons.DungeonRoom]
+    :param extension_x: The number of rooms to include in the new chunk.
+    :type extension_x: int
+    :return: A list of selected dungeon rooms forming the new chunk.
+    :rtype: list[dungeons.DungeonRoom]
+    """
     new_chunk = []
     for _ in range(extension_x):
         selected_room = random.choice(source_dungeon_pool)
