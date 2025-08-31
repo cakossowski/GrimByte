@@ -562,6 +562,21 @@ def generate_other_chunks(source_dungeon_pool, extension_x):
 
 
 def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
+    """
+    Generate a dungeon map by creating the first chunk (starting with a sphere room)
+    and subsequent chunks of random rooms.
+
+    :param target_map: The map structure to which the generated chunks will be added.
+    :type target_map: list[list[dungeons.DungeonRoom]]
+    :param source_dungeon_pool: The list of available dungeon rooms to draw from.
+    :type source_dungeon_pool: list[dungeons.DungeonRoom]
+    :param extension_x: The width of each chunk (number of rooms per row).
+    :type extension_x: int
+    :param extension_y: The height of the map (number of chunks/rows).
+    :type extension_y: int
+    :return: The completed dungeon map as a 2D list of rooms.
+    :rtype: list[list[dungeons.DungeonRoom]]
+    """
     first_chunk = generate_first_chunk(source_dungeon_pool, extension_x)
     target_map.append(first_chunk)
 
@@ -573,6 +588,15 @@ def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
 
 
 def set_coords(target_map: list):
+    """
+    Assign coordinates to each room in the dungeon map based on its position
+    within the 2D list.
+
+    :param target_map: The dungeon map represented as a 2D list of rooms.
+    :type target_map: list[list[dungeons.DungeonRoom]]
+    :return: None
+    :rtype: None
+    """
     for level in target_map:
         current_level = target_map.index(level)
         for room in level:
@@ -582,6 +606,14 @@ def set_coords(target_map: list):
 
 
 def render_map(target_map):
+    """
+    Render the dungeon map in the console using symbols for different room types.
+
+    :param target_map: The dungeon map represented as a 2D list of rooms.
+    :type target_map: list[list[dungeons.DungeonRoom]]
+    :return: None
+    :rtype: None
+    """
     symbols = {
         "sphere": "🔵",
         "encounter": "☠️",
