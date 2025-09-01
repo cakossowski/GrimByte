@@ -2,6 +2,17 @@ import random
 from items import Item
 
 def calculate_dmg(attacker, defender):
+    """
+    Calculate the damage dealt by an attacker to a defender using their battle stats.
+
+    The formula used is: damage = (attacker.battle_ap ** 2) / (attacker.battle_ap + defender.battle_defense)
+    The result is always at least 1 and returned as an integer.
+
+    :param attacker: The entity dealing damage, with a 'battle_ap' attribute.
+    :param defender: The entity receiving damage, with a 'battle_defense' attribute.
+    :return: The calculated damage value (minimum 1).
+    :rtype: int
+    """
     damage = (attacker.battle_ap ** 2) / (attacker.battle_ap + defender.battle_defense)
     return max(1, int(damage))
 
