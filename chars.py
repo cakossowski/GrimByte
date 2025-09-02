@@ -69,6 +69,12 @@ class PlayerChar(Entity):
 
 
     def check_inventory_space(self):
+        """
+        Check if the character's inventory has free space for additional items.
+
+        :return: True if there is space available, False otherwise.
+        :rtype: bool
+        """
         return len(self.inventory) < self.inventory_space_max
 
 
