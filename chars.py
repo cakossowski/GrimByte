@@ -79,6 +79,16 @@ class PlayerChar(Entity):
 
 
     def put_in_inventory(self, target_item):
+        """
+        Attempt to add an item to the character's inventory.
+        If there is available space, the item is added.
+        If the inventory is full, the item is destroyed.
+
+        :param target_item: The item to be added to the inventory.
+        :type target_item: object
+        :return: None
+        :rtype: None
+        """
         if self.check_inventory_space():
             self.inventory.append(target_item)
             print(f"You picked up: {target_item.name}")
