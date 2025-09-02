@@ -57,6 +57,13 @@ class PlayerChar(Entity):
 
 
     def calculate_current_stats(self):
+        """
+        Recalculate and update the current battle stats of the character
+        based on base values and equipped items.
+
+        :return: None
+        :rtype: None
+        """
         self.battle_ap = self.equipment_weapon[0].ap + self.base_ap
         self.battle_defense = self.equipment_armor[0].defense + self.base_defense
 
