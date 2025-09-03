@@ -130,6 +130,18 @@ class PlayerChar(Entity):
 
 
     def level_up(self):
+        """
+        Increase the character's level and improve base stats accordingly.
+
+        Effects:
+        - Attack power (base_ap) increases by 2
+        - Defense (base_defense) increases by 1
+        - Health points (hp) increase by 4
+        - Level increases by 1
+
+        :return: None
+        :rtype: None
+        """
         self.base_ap += 2
         self.base_defense += 1
         self.hp += 4
