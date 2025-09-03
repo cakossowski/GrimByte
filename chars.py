@@ -98,6 +98,12 @@ class PlayerChar(Entity):
 
 
     def show_inventory(self):
+        """
+        Display the contents of the character's inventory in the console.
+
+        :return: None
+        :rtype: None
+        """
         print(f"Your inventory currently contains the following items:")
         for item in self.inventory:
             print(item)
