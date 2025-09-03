@@ -110,6 +110,15 @@ class PlayerChar(Entity):
 
 
     def attack_monster(self, target):
+        """
+        Perform an attack on a target monster, calculate the dealt damage,
+        and update the target's HP accordingly.
+
+        :param target: The monster being attacked.
+        :type target: chars.Monster
+        :return: None
+        :rtype: None
+        """
         dmg = calculate_dmg(self, target)
         target.hp -= dmg
         print(f"{self.name} launches an attack! It deals {dmg} damage, {target.name} has {target.hp} HP remaining")
