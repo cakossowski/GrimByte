@@ -176,10 +176,26 @@ class Monster(Entity):
                                     f"---- END OF ENTITY INFORMATION FOR THIS OBJECT --- \n")
 
     def calculate_battle_ap(self):
+        """
+        Calculate and update the character's current battle attack power
+        based on the equipped weapon and base attack power.
+
+        :return: None
+        :rtype: None
+        """
         self.battle_ap = self.weapon[0].ap + self.base_ap
 
 
     def attack_player(self, player: PlayerChar):
+        """
+        Perform an attack on the player, calculate the dealt damage,
+        and update the player's HP accordingly.
+
+        :param player: The player character being attacked.
+        :type player: PlayerChar
+        :return: None
+        :rtype: None
+        """
         dmg = calculate_dmg(self, player)
         player.hp -= dmg
         print(f"{self.name} launched an attack on you - it did {dmg} damage. You have {player.hp} HP left!")
