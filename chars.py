@@ -202,6 +202,12 @@ class Monster(Entity):
 
 
 def calculate_base_stats_monsters():
+    """
+    Generate randomized base stats for a fodder monster.
+
+    :return: A tuple containing base attack power, base defense, and base HP.
+    :rtype: tuple[int, int, int]
+    """
     base_ap = random.randint(3, 5)
     base_defense = random.randint(3, 6)
     base_hp = random.randint(8, 12)
