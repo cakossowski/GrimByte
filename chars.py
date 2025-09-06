@@ -214,6 +214,12 @@ def calculate_base_stats_monsters():
     return base_ap, base_defense, base_hp
 
 def calculate_base_stats_bosses():
+    """
+    Generate randomized base stats for a boss monster.
+
+    :return: A tuple containing base attack power, base defense, and base HP.
+    :rtype: tuple[int, int, int]
+    """
     base_ap = random.randint(7, 9)
     base_defense = random.randint(8, 10)
     base_hp = random.randint(40, 55)
