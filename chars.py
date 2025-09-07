@@ -227,6 +227,21 @@ def calculate_base_stats_bosses():
 
 
 def sell_item(player: PlayerChar, merchant: Trader, item_name: str):
+    """
+    Sell an item from the player's inventory to a merchant.
+    If the item is found, it is transferred to the merchant,
+    the player receives its value in gold, and the item is removed
+    from the player's inventory.
+
+    :param player: The player character selling the item.
+    :type player: PlayerChar
+    :param merchant: The merchant (trader) buying the item.
+    :type merchant: Trader
+    :param item_name: The name of the item to be sold.
+    :type item_name: str
+    :return: None
+    :rtype: None
+    """
     traded_item = next((item for item in player.inventory if item.name == item_name), None)
     if traded_item is None:
         print("You don't possess this ominous item!")
