@@ -16,7 +16,7 @@ def main():
     # TODO add basic workflow for functions
     state_machine.create_pools_for_startup(item_pool, weapon_pool, encounter_pool, dungeon_pool)
     generator.generate_map(new_map, dungeon_pool, 5, 3)
-    generator.render_map(new_map)
+    generator.render_map_overall(new_map)
 
     new_player = chars.PlayerChar("Horst", "player", 100, 5, 5, 1)
     new_map[0][0].entities.append(new_player)
@@ -25,6 +25,9 @@ def main():
         new_position = check_target_destination(new_player, target, new_map)
         if new_position:
             move_player_to_target_destination(new_player, new_position, new_map)
+
+        if target == "render":
+            generator.render_map_for_player(new_map)
 
 
 
