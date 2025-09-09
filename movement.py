@@ -61,6 +61,7 @@ def check_target_destination(player, target_direction, current_map):
         target_room = current_map[new_y][new_x]
         if not target_room.blocked:
             print(f"You move {target_direction} and enter the next room!")
+            target_room.visited = True
             return new_position
         else:
             print("Your way is blocked, can't move here!")

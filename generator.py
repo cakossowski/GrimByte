@@ -605,7 +605,7 @@ def set_coords(target_map: list):
             room.position = (x, y)
 
 
-def render_map(target_map):
+def render_map_overall(target_map):
     """
     Render the dungeon map in the console using symbols for different room types.
 
@@ -626,5 +626,32 @@ def render_map(target_map):
                 line.append(symbols.get(room.type_))
         print(" ".join(line))
 
+
+def render_map_for_player(target_map):
+    """
+    Render the dungeon map in the console using symbols for different room types.
+    Only visited rooms are shown, others stay hidden (fog of war).
+
+    :param target_map: The dungeon map represented as a 2D list of rooms.
+    :type target_map: list[list[dungeons.DungeonRoom]]
+    :return: None
+    :rtype: None
+    """
+    symbols = {
+        "sphere": "🔵",
+        "encounter": "☠️",
+        "void": "⬛"
+    }
+
+    fog_symbol = "⬜"  # für unerforschte Räume
+
+    for chunk in target_map:
+        line = []
+        for room in chunk:
+            if hasattr(room, "visited") and room.visited:
+                line.append(symbols.get(room.type_, "?"))
+            else:
+                line.append(fog_symbol)
+        print(" ".join(line))
 
 
