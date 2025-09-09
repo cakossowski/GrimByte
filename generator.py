@@ -595,7 +595,6 @@ def set_coords(target_map: list):
     :param target_map: The dungeon map represented as a 2D list of rooms.
     :type target_map: list[list[dungeons.DungeonRoom]]
     :return: None
-    :rtype: None
     """
     for level in target_map:
         current_level = target_map.index(level)
@@ -612,7 +611,6 @@ def render_map_overall(target_map):
     :param target_map: The dungeon map represented as a 2D list of rooms.
     :type target_map: list[list[dungeons.DungeonRoom]]
     :return: None
-    :rtype: None
     """
     symbols = {
         "sphere": "🔵",
@@ -635,7 +633,6 @@ def render_map_for_player(target_map):
     :param target_map: The dungeon map represented as a 2D list of rooms.
     :type target_map: list[list[dungeons.DungeonRoom]]
     :return: None
-    :rtype: None
     """
     symbols = {
         "sphere": "🔵",
@@ -643,7 +640,7 @@ def render_map_for_player(target_map):
         "void": "⬛"
     }
 
-    fog_symbol = "⬜"  # für unerforschte Räume
+    fog_symbol = "⬜"  # for rooms that aren't explored yet
 
     for chunk in target_map:
         line = []
