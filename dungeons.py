@@ -8,6 +8,7 @@ class DungeonRoom:
         self.treasures = []
         self.position = ()
         self.visited = False
+        self.enemies_visible = True
 
     def __str__(self):
         return (f"---Dungeon Room---"
