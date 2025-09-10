@@ -48,6 +48,9 @@ def main():
 
     # main loop
     while True:
+        command = input("> ").strip().lower().split()
+        cmd = command[0]
+        arg = command[1]
 
 
 
