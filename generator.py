@@ -586,6 +586,12 @@ def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
 
     return target_map
 
+def create_pools_for_startup(item_pool, weapon_pool, encounter_pool, dungeon_pool):
+    generate_treasure_pool(item_pool)
+    generate_weapon_pool(weapon_pool)
+    generate_encounter_pool(encounter_pool)
+    generate_dungeon_pool(dungeon_pool)
+    return item_pool, weapon_pool, encounter_pool, dungeon_pool
 
 def set_coords(target_map: list):
     """
