@@ -15,15 +15,9 @@ class Item:
         return self.__str__()
 
 
+# TODO rewrite Weeapon class
 class Weapon(Item):
     def __init__(self, name, type_, description, value, ap):
         super().__init__(name, type_, description, value)
 
         self.ap = ap
-
-
-class Armor(Item):
-    def __init__(self, name, type_, description, value, defense):
-        super().__init__(name, type_, description, value)
-
-        self.defense = defense
