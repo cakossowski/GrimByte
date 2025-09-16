@@ -9,3 +9,7 @@ class BaseState(ABC):
         """ Executed when called"""
         pass
 
+    @abstractmethod
+    def handle_input(self):
+        pass
+
