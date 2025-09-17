@@ -5,11 +5,17 @@ class BaseState(ABC):
         self.game = game
 
     @abstractmethod
-    def on_enter(self):
-        """ Executed when called"""
+    def enter(self):
+        """ Executed when called """
         pass
 
     @abstractmethod
-    def handle_input(self):
+    def update_with_player_input(self, command):
+        """ Handle player input via command and update current state """
+        pass
+
+    @abstractmethod
+    def exit_state(self):
+        """ Give signal to change state and execute everything that needs to be done on exiting current state"""
         pass
 
