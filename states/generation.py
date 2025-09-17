@@ -1,3 +1,15 @@
+from states.base_state import BaseState
+
+
+class Generation(BaseState):
+    def __init__(self, game):
+        super().__init__(game)
+        self.game = game
+
+    def enter(self):
+        """ Start generation of items on start """
+        pass
+
 # initial dictionary for room names and description
 room_names_and_desc = {
     "Hall of Whispers": "The walls gossip about your failures… and they never forget.",
@@ -227,3 +239,4 @@ merchants = {
     "Hollow Jack": "Sells lanterns. All cursed. All still somehow sold out.",
     "Lady Spite": "Her smiles cost extra. Her insults are free."
 }
+
