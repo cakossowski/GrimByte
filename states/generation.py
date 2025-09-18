@@ -10,6 +10,9 @@ class Generation(BaseState):
         """ Start generation of items on start """
         pass
 
+    def exit_state(self):
+        pass
+
 # initial dictionary for room names and description
 room_names_and_desc = {
     "Hall of Whispers": "The walls gossip about your failures… and they never forget.",
