@@ -1,18 +1,5 @@
 from states.base_state import BaseState
-
-
-class Generation(BaseState):
-    def __init__(self, game):
-        super().__init__(game)
-        self.game = game
-
-    def enter(self):
-        """ Start generation of items on start """
-        pass
-
-    def exit_state(self):
-        pass
-
+import random
 # initial dictionary for room names and description
 room_names_and_desc = {
     "Hall of Whispers": "The walls gossip about your failures… and they never forget.",
@@ -242,4 +229,392 @@ merchants = {
     "Hollow Jack": "Sells lanterns. All cursed. All still somehow sold out.",
     "Lady Spite": "Her smiles cost extra. Her insults are free."
 }
+
+
+def calculate_item_value(type_treasure: str) -> int:
+    """
+    Calculate the item value for treasures to be sold later on.
+    Function is later on used in create_treasure function
+
+    :param type_treasure: Reference to dict above to select item "quality"
+    :return: value (int) for each item stored in a variable
+    """
+    if type_treasure == "junk":
+        value = random.randint(1, 10)
+        return value
+    elif type_treasure == "normal":
+        value = random.randint(11, 25)
+        return value
+    elif type_treasure == "high_value":
+        value = random.randint(75, 100)
+        return value
+    else:
+        print("Unknown treasure type")
+
+
+
+def create_treasure(treasure_list: dict, type_treasure: str) -> Item:
+    """Create a treasure item based on a given treasure type and list.
+
+    :param treasure_list: Dictionary mapping item names to their descriptions.
+    :type treasure_list: dict
+    :param type_treasure: The type of treasure to generate, used for value calculation.
+    :type type_treasure: str
+    :returns: A newly created Item object with name, description, type, and calculated value.
+    :rtype: Item
+    """
+    value = calculate_item_value(type_treasure)
+    name, description = random.choice(list(treasure_list.items()))
+    new_item = Item(name, "item", description, value)
+    return new_item
+
+
+def generate_treasure_pool(target_item_pool: list) -> list:
+    """Generate a pool of treasure items, including junk, normal, and high-value items.
+
+    :param target_item_pool: List to which generated treasure items will be appended.
+    :type target_item_pool: list
+    :returns: The updated list containing all generated treasure items.
+    :rtype: list
+    """
+    junk_item_count = 0
+    normal_item_count = 0
+    high_value_item_count = 0
+
+    while junk_item_count < 10:
+        junk_item_count += 1
+        new_junk_treasure = create_treasure(junk_items, "junk")
+        target_item_pool.append(new_junk_treasure)
+
+    while normal_item_count < 5:
+        normal_item_count += 1
+        new_normal_treasure = create_treasure(normal_items, "normal")
+        target_item_pool.append(new_normal_treasure)
+
+    while high_value_item_count < 3:
+        high_value_item_count += 1
+        new_high_value_treasure = create_treasure(high_value_items, "high_value")
+        target_item_pool.append(new_high_value_treasure)
+    return target_item_pool
+
+
+def calculate_weapon_ap_and_value(weapon_quality: str) -> tuple[int, int]:
+    """Calculate the attack power and value of a weapon based on its quality.
+
+    :param weapon_quality: The quality tier of the weapon (e.g., "simple", "crafted", "legendary").
+    :type weapon_quality: str
+    :returns: A tuple containing the weapon's attack power and its value.
+    :rtype: tuple[int, int]
+    """
+    if weapon_quality == "simple":
+        attack_power = random.randint(1,5)
+        value = random.randint(1,3)
+        return attack_power, value
+    elif weapon_quality == "crafted":
+        attack_power = random.randint(3, 7)
+        value = random.randint(5, 10)
+        return attack_power, value
+    elif weapon_quality == "legendary":
+        attack_power = random.randint(10, 15)
+        value = random.randint(100, 300)
+        return attack_power, value
+    else:
+        raise ValueError(f"Unknown weapon quality: {weapon_quality}")
+
+def create_weapon(weapon_list: dict, weapon_quality: str) -> Weapon:
+    """
+    Create a new weapon instance with randomized attributes.
+
+    :param weapon_list: Dictionary of available weapons, where keys are
+        weapon names and values are their descriptions.
+    :type weapon_list: dict
+    :param weapon_quality: The quality of the weapon (e.g., "common", "rare",
+        "legendary"), which influences the weapon's attack power and value.
+    :type weapon_quality: str
+    :return: A new Weapon object with name, type "weapon", description,
+        value, and attack power.
+    :rtype: Weapon
+    """
+    ap, value = calculate_weapon_ap_and_value(weapon_quality)
+    name, description = random.choice(list(weapon_list.items()))
+    new_weapon = Weapon(name, "weapon", description, value, ap)
+    return new_weapon
+
+def generate_weapon_pool(target_weapon_pool: list) -> list:
+    """
+    Populate the target weapon pool with a predefined number of weapons
+    of different qualities.
+
+    :param target_weapon_pool: The list to which the generated weapons will be added.
+    :type target_weapon_pool: list
+    :return: The updated weapon pool containing simple, crafted, and legendary weapons.
+    :rtype: list
+    """
+    simple_weapons_count = 0
+    crafted_weapons_count = 0
+    legendary_weapons_count = 0
+
+    while simple_weapons_count < 5:
+        simple_weapons_count += 1
+        new_simple_weapon = create_weapon(simple_weapons, "simple")
+        target_weapon_pool.append(new_simple_weapon)
+
+    while crafted_weapons_count < 5:
+        crafted_weapons_count += 1
+        new_crafted_weapon = create_weapon(crafted_weapons, "crafted")
+        target_weapon_pool.append(new_crafted_weapon)
+
+    while legendary_weapons_count < 2:
+        legendary_weapons_count += 1
+        new_legendary_weapon = create_weapon(legendary_weapons, "legendary")
+        target_weapon_pool.append(new_legendary_weapon)
+    return target_weapon_pool
+
+
+def create_room(room_type: str) -> DungeonRoom:
+    """
+    Create a new dungeon room with a randomized name and description.
+
+    :param room_type: The type/category of the room (e.g., "treasure", "enemy", "puzzle").
+    :type room_type: str
+    :return: A new DungeonRoom object with name, type, and description.
+    :rtype: DungeonRoom
+    """
+    name, description = random.choice(list(room_names_and_desc.items()))
+    new_room = dungeons.DungeonRoom(name, room_type, description)
+    return new_room
+
+def generate_dungeon_pool(target_pool: list):
+    """
+    Populate the target dungeon pool with a predefined number of rooms
+    of different types.
+
+    :param target_pool: The list to which the generated dungeon rooms will be added.
+    :type target_pool: list
+    :return: The updated dungeon pool containing void, sphere, and encounter rooms.
+    :rtype: list
+    """
+    void_room_count = 0
+    sphere_room_count = 0
+    encounter_room_count = 0
+
+    while void_room_count < 2:
+        void_room_count += 1
+        new_room = create_room("void")
+        new_room.blocked = True
+        target_pool.append(new_room)
+
+    while sphere_room_count < 2:
+        sphere_room_count += 1
+        new_room = create_room("sphere")
+        target_pool.append(new_room)
+
+    while encounter_room_count < 11:
+        encounter_room_count += 1
+        new_room = create_room("encounter")
+        target_pool.append(new_room)
+
+    return target_pool
+
+
+def assign_encounters_to_rooms(encounter_pool: list[chars.Monster], room_pool: list[dungeons.DungeonRoom]):
+    """
+    Assign encounters from the encounter pool to available "encounter" rooms
+    in the room pool.
+
+    :param encounter_pool: List of Monster objects to be placed in rooms.
+    :type encounter_pool: list[chars.Monster]
+    :param room_pool: List of DungeonRoom objects where encounters can be assigned.
+    :type room_pool: list[dungeons.DungeonRoom]
+    :return: The updated room pool with encounters assigned to valid rooms.
+    :rtype: list[dungeons.DungeonRoom]
+    """
+    valid_rooms = [room for room in room_pool if room.type_ == "encounter"]
+
+    for encounter in encounter_pool:
+        available_rooms = [room for room in valid_rooms if not room.entities]
+
+        if not available_rooms:
+            break
+
+        selected_room = random.choice(available_rooms)
+        selected_room.entities.append(encounter)
+
+    return room_pool
+
+
+def create_merchant():
+    """
+    Create a new merchant (trader) with a randomized name and description.
+
+    :return: A new Trader object representing the merchant.
+    :rtype: chars.Trader
+    """
+    name, description = random.choice(list(merchants.items()))
+    new_merchant = chars.Trader(name, "merchant", description)
+    return new_merchant
+
+
+def create_fodder_monster():
+    """
+    Create a new fodder monster with randomized name, description, base stats,
+    and a death message.
+
+    :return: A new Monster object representing the fodder monster.
+    :rtype: chars.Monster
+    """
+    name, description = random.choice(list(fodder_monsters.items()))
+    base_ap, base_defense, base_hp = chars.calculate_base_stats_monsters()
+    new_death_msg = random.choice(death_quotes)
+    new_monster = chars.Monster(name, "monster", base_ap, base_defense, base_hp, new_death_msg)
+    return new_monster
+
+def create_boss_monster():
+    """
+    Create a new boss monster with randomized name, description, base stats,
+    and a death message.
+
+    :return: A new Monster object representing the boss monster.
+    :rtype: chars.Monster
+    """
+    name, description = random.choice(list(boss_monsters.items()))
+    base_ap, base_defense, base_hp = chars.calculate_base_stats_bosses()
+    new_death_msg = random.choice(death_quotes)
+    new_boss = chars.Monster(name, "boss", base_ap, base_defense, base_hp, new_death_msg)
+    return new_boss
+
+def generate_encounter_pool(target_pool: list) -> list:
+    """
+    Populate the target encounter pool with fodder monsters, boss monsters,
+    and a merchant.
+
+    :param target_pool: The list to which the generated encounters will be added.
+    :type target_pool: list
+    :return: The updated encounter pool containing fodder monsters, boss monsters,
+        and one merchant.
+    :rtype: list
+    """
+    fodder_count = 0
+    boss_count = 0
+
+    while fodder_count < 8:
+        fodder_count += 1
+        new_fodder_monster = create_fodder_monster()
+        target_pool.append(new_fodder_monster)
+
+    while boss_count < 2:
+        boss_count += 1
+        new_boss = create_boss_monster()
+        target_pool.append(new_boss)
+
+    new_merchant = create_merchant()
+    target_pool.append(new_merchant)
+    return target_pool
+
+
+def generate_first_chunk(source_dungeon_pool, extension_x) -> list:
+    """
+    Generate the first chunk of the dungeon by selecting one "sphere" room
+    and additional random rooms from the dungeon pool.
+
+    :param source_dungeon_pool: The list of available dungeon rooms to draw from.
+    :type source_dungeon_pool: list[dungeons.DungeonRoom]
+    :param extension_x: The number of rooms to include in the first chunk.
+    :type extension_x: int
+    :return: A list of selected dungeon rooms forming the first chunk.
+    :rtype: list[dungeons.DungeonRoom]
+    """
+    first_chunk = []
+    possible_first_room = [room for room in source_dungeon_pool if room.type_ == "sphere"]
+
+    selected_first_room = random.choice(possible_first_room)
+    first_chunk.append(selected_first_room)
+    source_dungeon_pool.remove(selected_first_room)
+
+    for _ in range(extension_x - 1):
+        selected_other_room = random.choice(source_dungeon_pool)
+        first_chunk.append(selected_other_room)
+        source_dungeon_pool.remove(selected_other_room)
+
+    return first_chunk
+
+def generate_other_chunks(source_dungeon_pool, extension_x):
+    """
+    Generate a new dungeon chunk by selecting random rooms from the dungeon pool.
+
+    :param source_dungeon_pool: The list of available dungeon rooms to draw from.
+    :type source_dungeon_pool: list[dungeons.DungeonRoom]
+    :param extension_x: The number of rooms to include in the new chunk.
+    :type extension_x: int
+    :return: A list of selected dungeon rooms forming the new chunk.
+    :rtype: list[dungeons.DungeonRoom]
+    """
+    new_chunk = []
+    for _ in range(extension_x):
+        selected_room = random.choice(source_dungeon_pool)
+        new_chunk.append(selected_room)
+        source_dungeon_pool.remove(selected_room)
+    return new_chunk
+
+
+def generate_map(target_map, source_dungeon_pool, extension_x, extension_y):
+    """
+    Generate a dungeon map by creating the first chunk (starting with a sphere room)
+    and subsequent chunks of random rooms.
+
+    :param target_map: The map structure to which the generated chunks will be added.
+    :type target_map: list[list[dungeons.DungeonRoom]]
+    :param source_dungeon_pool: The list of available dungeon rooms to draw from.
+    :type source_dungeon_pool: list[dungeons.DungeonRoom]
+    :param extension_x: The width of each chunk (number of rooms per row).
+    :type extension_x: int
+    :param extension_y: The height of the map (number of chunks/rows).
+    :type extension_y: int
+    :return: The completed dungeon map as a 2D list of rooms.
+    :rtype: list[list[dungeons.DungeonRoom]]
+    """
+    first_chunk = generate_first_chunk(source_dungeon_pool, extension_x)
+    target_map.append(first_chunk)
+
+    for _ in range(extension_y-1):
+        new_chunk = generate_other_chunks(source_dungeon_pool, extension_x)
+        target_map.append(new_chunk)
+
+    return target_map
+
+def create_pools_for_startup(item_pool, weapon_pool, encounter_pool, dungeon_pool):
+    generate_treasure_pool(item_pool)
+    generate_weapon_pool(weapon_pool)
+    generate_encounter_pool(encounter_pool)
+    generate_dungeon_pool(dungeon_pool)
+    return item_pool, weapon_pool, encounter_pool, dungeon_pool
+
+def set_coords(target_map: list):
+    """
+    Assign coordinates to each room in the dungeon map based on its position
+    within the 2D list.
+
+    :param target_map: The dungeon map represented as a 2D list of rooms.
+    :type target_map: list[list[dungeons.DungeonRoom]]
+    :return: None
+    """
+    for level in target_map:
+        current_level = target_map.index(level)
+        for room in level:
+            x = current_level
+            y = level.index(room)
+            room.position = (x, y)
+
+
+class Generation(BaseState):
+    def __init__(self, game):
+        super().__init__(game)
+        self.game = game
+
+    def enter(self):
+        """ Start generation of items on start """
+        pass
+
+    def exit_state(self):
+        pass
 
