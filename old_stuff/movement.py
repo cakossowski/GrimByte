@@ -72,6 +72,7 @@ def check_target_destination(player, target_direction, current_map):
 
 
 def move_player_to_target_destination(player, target_position, current_map):
+    # TODO new movement implementation needed
     """
     Move the player to the target destination on the current map by updating
     their position and transferring them between rooms.
